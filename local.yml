@@ -3,6 +3,6 @@
   become: true
 
   tasks:
-  - name: Install htop
-    apt:
-      name: htop
+  - name: Update cache and install msgconvert
+    apt:  update-cache=yes
+      name: libemail-outlook-message-perl
