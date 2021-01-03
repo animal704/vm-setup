@@ -4,5 +4,6 @@
 
   tasks:
   - name: Update cache and install msgconvert
-    apt:  update_cache=yes
+    apt:  
       name: libemail-outlook-message-perl
+      update_cache:  yes
