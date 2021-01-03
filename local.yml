@@ -3,7 +3,19 @@
   become: true
 
   tasks:
+  - name: Update cache and update OS
+    apt:
+      upgrade: full
+      update_cache: yes
+
   - name: Update cache and install msgconvert
-    apt:  
-      name: libemail-outlook-message-perl
-      update_cache:  yes
+    apt:
+      pkg:
+      - ufw  
+      - libemail-outlook-message-perl
+
+  - name: Block incoming and enable UFW
+    ufw:
+      state: enabled
+      direction: incoming
+      policy: deny
