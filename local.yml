@@ -13,6 +13,7 @@
       pkg:
       - ufw  
       - libemail-outlook-message-perl
+      - mpack
 
   - name: Block incoming and enable UFW
     ufw:
