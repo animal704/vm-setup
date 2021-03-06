@@ -1,12 +1,14 @@
 - hosts: localhost
   connection: local
+  become: true
+  become_user: root
+  become_method: sudo
 
   tasks:
   - name: Update cache and update OS
     apt:
       upgrade: full
       update_cache: yes
-    become: true
     
   - name: Update cache and install packages
     apt:
@@ -14,14 +16,12 @@
       - ufw  
       - libemail-outlook-message-perl
       - mpack
-    become: true
     
   - name: Block incoming and enable UFW
     ufw:
       state: enabled
       direction: incoming
       policy: deny
-    become: true
   
   - name: Check if rockyou.txt.gz exists (Kali)
     stat:
@@ -50,13 +50,11 @@
       group: root
       owner: root
     when: my_folder.stat.exists == false
-    become: true
     
   - name: Check if keys folder is empty before proceeding
     find:
       paths: '/etc/ssh/default_keys'
     register: filesFound
-    become: true
     
   - fail:
       msg: '/etc/ssh/default_keys folder is not empty.'
@@ -73,7 +71,6 @@
        mode: 0600
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
-    become: true
     
   - name: Delete existing ssh host keys
     file:
@@ -81,8 +78,6 @@
       state: absent
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
-    become: true
     
   - name: Recreate keys
-    command: dpkg-reconfigure openssh-server 
-    become: true
+    command: dpkg-reconfigure openssh-server
