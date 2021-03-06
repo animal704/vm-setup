@@ -51,6 +51,12 @@
 
   - debug:
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
-      
-  - name: Move default ssh keys to default_keys directory
-    command: mv /etc/ssh/ssh_host_* /etc/ssh/default_keys/
+
+  - name: Copy each file over that matches the given pattern
+      copy:
+        src: "{{ item }}"
+        dest: "/etc/ssh/default_keys"
+        owner: "root"
+        mode: 0600
+      with_fileglob:
+        - "/etc/ssh/ssh_host_*"
