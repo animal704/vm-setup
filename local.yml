@@ -21,6 +21,16 @@
       direction: incoming
       policy: deny
   
+  - name: Check if rockyou.txt.gz exists (Kali)
+    stat:
+      path: /usr/share/wordlists/rockyou.txt.gz
+    register: rockyou_file
+    
+  - unarchive:
+      src: /usr/share/wordlists/rockyou.txt.gz
+      dest: /usr/share/wordlists
+    when: rockyou_file.stat.exists
+  
   - name: Check if default_keys exists
     stat:
       path: /etc/ssh/default_keys
