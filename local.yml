@@ -27,7 +27,7 @@
     register: rockyou_file
     
   - name: Run uncompress if rockyou exists
-      command: gzip -d /usr/share/wordlists/rockyou.txt.gz
+    command: gzip -d /usr/share/wordlists/rockyou.txt.gz
     when: rockyou_file.stat.exists
   
   - name: Check if default_keys exists
