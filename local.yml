@@ -26,9 +26,8 @@
       path: /usr/share/wordlists/rockyou.txt.gz
     register: rockyou_file
     
-  - unarchive:
-      src: /usr/share/wordlists/rockyou.txt.gz
-      dest: /usr/share/wordlists
+  - name: Run uncompress if rockyou exists
+      command: gzip -d /usr/share/wordlists/rockyou.txt.gz
     when: rockyou_file.stat.exists
   
   - name: Check if default_keys exists
