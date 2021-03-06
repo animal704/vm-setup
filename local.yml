@@ -20,3 +20,22 @@
       state: enabled
       direction: incoming
       policy: deny
+  
+  - name: Check if default_keys exists
+    stat:
+      path: /etc/ssh/default_keys
+    register: my_folder
+    
+  - name: echo if directory already exists
+    debug:
+      msg: "default_keys already exists"
+    when: my_folder.stat.exists
+    
+  - name: Ansible Create directory if not exists
+    file:
+      path: /etc/ssh/default_keys
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+    when: my_folder.stat.exists == false
