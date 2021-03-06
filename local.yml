@@ -44,7 +44,7 @@
     file:
       path: /etc/ssh/default_keys
       state: directory
-      mode: 0755
+      mode: 0700
       group: root
       owner: root
     when: my_folder.stat.exists == false
@@ -76,3 +76,6 @@
       state: absent
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
+        
+  - name: Recreate keys
+    command: dpkg-reconfigure openssh-server 
