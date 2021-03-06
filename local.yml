@@ -41,9 +41,9 @@
     when: my_folder.stat.exists == false
     
   - name: Check if keys folder is empty before proceeding
-      find:
-        paths: '/etc/ssh/default_keys'
-      register: filesFound
+    find:
+      paths: '/etc/ssh/default_keys'
+    register: filesFound
 
   - fail:
       msg: '/etc/ssh/default_keys folder is not empty.'
