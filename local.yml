@@ -53,4 +53,4 @@
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
       
   - name: Move default ssh keys to default_keys directory
-    command: mv /etc/ssh/ssh_host_* /etc/ssh/default_kali_keys/
+    command: mv /etc/ssh/ssh_host_* /etc/ssh/default_keys/
