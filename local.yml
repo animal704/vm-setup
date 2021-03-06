@@ -38,4 +38,4 @@
       mode: 0755
       group: root
       owner: root
-      when: my_folder.stat.exists == false
+    when: my_folder.stat.exists == false
