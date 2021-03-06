@@ -34,8 +34,8 @@
   - name: Ansible Create directory if not exists
     file:
       path: /etc/ssh/default_keys
-    state: directory
-    mode: 0755
-    group: root
-    owner: root
-    when: my_folder.stat.exists == false
+      state: directory
+      mode: 0755
+      group: root
+      owner: root
+      when: my_folder.stat.exists == false
