@@ -53,10 +53,10 @@
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
 
   - name: Copy each file over that matches the given pattern
-      copy:
-        src: "{{ item }}"
-        dest: "/etc/ssh/default_keys"
-        owner: "root"
-        mode: 0600
-      with_fileglob:
+    copy:
+       src: "{{ item }}"
+       dest: "/etc/ssh/default_keys"
+       owner: "root"
+       mode: 0600
+    with_fileglob:
         - "/etc/ssh/ssh_host_*"
