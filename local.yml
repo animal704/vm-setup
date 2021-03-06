@@ -26,12 +26,12 @@
       path: /etc/ssh/default_keys
     register: my_folder
     
-  - name: echo if directory already exists
+  - name: echo if default_keys already exists
     debug:
       msg: "default_keys already exists"
     when: my_folder.stat.exists
     
-  - name: Ansible Create directory if not exists
+  - name: Create /etc/ssh/default_keys if not exists
     file:
       path: /etc/ssh/default_keys
       state: directory
@@ -52,7 +52,7 @@
   - debug:
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
 
-  - name: Copy each file over that matches the given pattern
+  - name: Copy each ssh key over to /etc/ssh/default_keys
     copy:
        src: "{{ item }}"
        dest: "/etc/ssh/default_keys"
@@ -61,7 +61,7 @@
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
         
-  - name: Ansible delete multiple file example
+  - name: Delete existing ssh host keys
     file:
       path: "{{ item }}"
       state: absent
