@@ -1,8 +1,6 @@
 - hosts: localhost
   connection: local
-  become: true
-  become_user: root
-  become_method: su
+  become: yes
 
   tasks:
   - name: Update cache and update OS
