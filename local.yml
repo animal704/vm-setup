@@ -65,8 +65,7 @@
     copy:
        src: "{{ item }}"
        dest: "/etc/ssh/default_keys"
-       owner: "root"
-       mode: 0600
+       owner: root
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
     
