@@ -1,7 +1,6 @@
 - hosts: localhost
   connection: local
   become: yes
-  become_flags: '-i'
 
   tasks:
   - name: Update cache and update OS
@@ -69,6 +68,7 @@
        owner: root
        group: root
        mode: 0755
+    become: true
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
     
