@@ -67,7 +67,7 @@
        dest: "/etc/ssh/default_keys"
        owner: root
        group: root
-       mode: '0644'
+       mode: 0755
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
     
