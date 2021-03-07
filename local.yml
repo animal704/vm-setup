@@ -62,9 +62,9 @@
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
 
   - name: Fix permissions
-      file:
-       path: "{{ item }}"
-       mode: o+r
+    file:
+      path: "{{ item }}"
+      mode: o+r
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
 
