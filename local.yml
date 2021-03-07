@@ -2,7 +2,7 @@
   connection: local
   become: true
   become_user: root
-  become_method: sudo
+  become_method: su
 
   tasks:
   - name: Update cache and update OS
