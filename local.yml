@@ -14,6 +14,7 @@
       - ufw  
       - libemail-outlook-message-perl
       - mpack
+      - git
     
   - name: Block incoming and enable UFW
     ufw:
@@ -33,12 +34,12 @@
   - name: Check if default_keys exists
     stat:
       path: /etc/ssh/default_keys
-    register: my_folder
+    register: default_keys_folder
     
   - name: echo if default_keys already exists
     debug:
       msg: "default_keys already exists"
-    when: my_folder.stat.exists
+    when: default_keys_folder.stat.exists
     
   - name: Create /etc/ssh/default_keys if not exists
     file:
@@ -47,7 +48,7 @@
       mode: 0700
       group: root
       owner: root
-    when: my_folder.stat.exists == false
+    when: default_keys_folder.stat.exists == false
     
   - name: Check if keys folder is empty before proceeding
     find:
