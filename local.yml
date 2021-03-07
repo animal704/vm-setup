@@ -61,10 +61,20 @@
   - debug:
       msg: 'The /etc/ssh/default_keys folder is empty. Proceeding.'
 
+  - name: Fix permissions
+      file:
+       path: "{{ item }}"
+       mode: o+r
+    with_fileglob:
+        - "/etc/ssh/ssh_host_*"
+
   - name: Copy each ssh key over to /etc/ssh/default_keys
     copy:
       src: "{{ item }}"
       dest: "/etc/ssh/default_keys"
+      mode: 0600
+      group: root
+      owner: root
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
     
