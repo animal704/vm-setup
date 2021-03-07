@@ -63,12 +63,11 @@
 
   - name: Copy each ssh key over to /etc/ssh/default_keys
     copy:
-       src: "{{ item }}"
-       dest: "/etc/ssh/default_keys"
-       owner: root
-       group: root
-       mode: 0755
-    become: true
+      src: "{{ item }}"
+      dest: "/etc/ssh/default_keys"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: 0644
     with_fileglob:
         - "/etc/ssh/ssh_host_*"
     
