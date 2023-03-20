@@ -5,8 +5,8 @@
   tasks:
   - name: Update cache and update OS
     apt:
-      upgrade: full
       update_cache: yes
+      upgrade: full
     
   - name: Update cache and install packages
     apt:
